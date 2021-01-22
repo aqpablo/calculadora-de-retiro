@@ -5,17 +5,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-.container{
+.firstContainer{
     border: solid 1px;
     border-radius: 7.5px;
     background-color: #C3D6E8;
     padding: 15px;
-    
 }
-form{
+.container{
     display: flex;
     flex-direction: column;
-    
 }
 h4{
     align-items: center;
@@ -30,4 +28,33 @@ button{
     height: 2rem;
     margin: 0.4rem auto;
     line-height: 1rem;
+}
+
+hr{
+    width: 100%;
+    
+}
+
+.formToAddDebt{
+    display: flex;
+    place-content: left;
+
+    height: 1.35rem;
+}
+
+.debtAmount{
+    width: 6rem;
+}
+.debtInterest {
+    width: 2rem;
+}
+.debtButton{
+    height: 100%;
+    margin: 0px;
+    
+}
+.debtButtonSubstract{
+    height: 100%;
+    margin: 0px;
+    
 }

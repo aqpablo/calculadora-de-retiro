@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcula tu retiro</title>
     <link rel="stylesheet" href="styles.css">
+
+    <script defer src="javascripts/data.js"></script>
+    <script defer src="javascripts/user.js"></script>
+    <script defer src="javascripts/app.js"></script>
 </head>
+
 <body>
+    <div class="firstContainer">
     <div class="container">
-        <form>
-            <p>Ingrese sus salario mensual</p>
-            <input type="number">
-            <p>Ingrese cuánto puede ahorrar al mes</p>
-            <input type="number">
-            <p>Ingrese el interés que consigue (%) </p>
-            <input type="number">
-            <button>Calcular</button>
-            <p>Respuesta: te retirarás en <b>x</b> años</p>
-        </form>
+        <p>Ingrese sus salario mensual</p>
+        <input type="number" id="salary">
+        <p>Ingrese cuánto puede ahorrar al mes</p>
+        <input type="number" id="savings">
+        <p>Ingrese el interés que consigue (%) </p>
+        <input type="number" id="interest">
+        <button id="calculate">Calcular</button>
+        <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
+        <hr>
+        <div class="container" id="secondContainer">
+            <h4>Deudas?</h4>
+            <div class="tableDebt" id="tableDebt"></div>
+            <div class="formToAddDebt">
+                <input type="text" class="debtText" id="debtText">
+                <input type="number" class ="debtAmount" id ="debtAmount">
+                <input type="number" class="debtInterest" id="debtInterest">
+                <button class="debtButton" id="debtButton">+</button>
+            </div>
+        </div>
     </div>
+</div>
 </body>
-<script src="javascripts/user.js"></script>
-<script src="javascripts/app.js"></script>
+
 </html>
