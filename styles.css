@@ -35,25 +35,25 @@ hr{
     
 }
 
-.formToAddDebt{
+.formToAddElement{
     display: flex;
     place-content: left;
 
     height: 1.35rem;
 }
 
-.debtAmount{
+.elementAmount{
     width: 6rem;
 }
-.debtInterest {
+.elementInterest {
     width: 2rem;
 }
-.debtButton{
+.elementButton{
     height: 100%;
     margin: 0px;
     
 }
-.debtButtonSubstract{
+.elementButtonSubstract{
     height: 100%;
     margin: 0px;
     

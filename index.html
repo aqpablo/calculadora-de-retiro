@@ -14,28 +14,47 @@
 
 <body>
     <div class="firstContainer">
-    <div class="container">
-        <p>Ingrese sus salario mensual</p>
-        <input type="number" id="salary">
-        <p>Ingrese cuánto puede ahorrar al mes</p>
-        <input type="number" id="savings">
-        <p>Ingrese el interés que consigue (%) </p>
-        <input type="number" id="interest">
-        <button id="calculate">Calcular</button>
-        <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
-        <hr>
-        <div class="container" id="secondContainer">
-            <h4>Deudas?</h4>
-            <div class="tableDebt" id="tableDebt"></div>
-            <div class="formToAddDebt">
-                <input type="text" class="debtText" id="debtText">
-                <input type="number" class ="debtAmount" id ="debtAmount">
-                <input type="number" class="debtInterest" id="debtInterest">
-                <button class="debtButton" id="debtButton">+</button>
+        <div class="container">
+            <p>Ingrese sus salario mensual</p>
+            <input type="number" id="salary">
+            <p>Ingrese cuánto puede ahorrar al mes</p>
+            <input type="number" id="savings">
+            <p>Ingrese el interés que consigue (%) </p>
+            <input type="number" id="interest">
+            <button id="calculate">Calcular</button>
+            <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
+            <hr>
+            <div class="container" id="secondContainer">
+                <h4>Deudas?</h4>
+                <div class="tableDebt" id="tableDebt"></div>
+                <div class="formToAddElement">
+                    <input type="text" class="elementText" id="debtText">
+                    <input type="number" class="elementAmount" id="debtAmount">
+                    <input type="number" class="elementInterest" id="debtInterest">
+                    <button class="elementButton" id="debtButton">+</button>
+                </div>
+
+                <h4>Ahorros?</h4>
+                <div class="tableSavings" id="tableSavings"></div>
+                <div class="formToAddElement">
+                    <input type="text" class="elementText" id="savingText">
+                    <input type="number" class="elementAmount" id="savingAmount">
+                    <input type="number" class="elementInterest" id="savingInterest">
+                    <button class="elementButton" id="savingButton">+</button>
+                </div>
+
+                <h4>Inversiones?</h4>
+                <div class="tableInvestings" id="tableInvestings"></div>
+                <div class="formToAddElement">
+                    <input type="text" class="elementText" id="investingText">
+                    <input type="number" class="elementAmount" id="investingAmount">
+                    <input type="number" class="elementInterest" id="investingInterest">
+                    <button class="elementButton" id="investingButton">+</button>
+                </div>
             </div>
+            
         </div>
     </div>
-</div>
 </body>
 
 </html>

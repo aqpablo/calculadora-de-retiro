@@ -1,23 +1,42 @@
 class User {
 
-    constructor(salary, savings, interest) {
+    constructor(salary, savings, interest,) {
         this.salary = salary;
         this.savings = savings;
         this.interest = interest;
+        this.loadLocalStorage();
+    }
+
+    loadLocalStorage() {
+        if (localStorage.key("usuario")) {
+            salary.value = JSON.parse(localStorage.getItem("usuario")).salary;
+            savings.value = JSON.parse(localStorage.getItem("usuario")).savings;
+            interest.value = JSON.parse(localStorage.getItem("usuario")).interest;
+            this.salary = parseFloat(salary.value);
+            this.savings = parseFloat(savings.value);
+            this.interest = parseFloat(interest.value);
+            yearsDisplay.textContent = this.calculateYearsToRetire();
+        }
     }
 
     calculateYearsToRetire() {
-        let costoVida = salary.value - savings.value;
-        let fondo = (costoVida * 12) / (interest.value / 100); //fondo total ahorrado necesario para retirarse
+        let arrayDeudasDestruidas = this.destroyDebts();
+        let años = arrayDeudasDestruidas[0];
+        let total = arrayDeudasDestruidas[1];
 
-        let total = 0; //total del fondo desde que se comienza a ahorrar
-        let años = 0;
+        let salario = this.salary;
+        let ahorro = arrayDeudasDestruidas[2];
+        let interes = this.interest;
+
+        let costoVida = salario - ahorro;
+        let fondo = (costoVida * 12) / (interes / 100); //fondo total ahorrado necesario para retirarse
+
 
         if (fondo == Infinity) {
             años = "∞"
         } else {
             while (total < fondo) {
-                total = (total + savings.value * 12) * (1 + interest.value / 100);
+                total = (total + ahorro * 12) * (1 + interes / 100);
                 años += 1
             }
         }
@@ -25,104 +44,101 @@ class User {
         return años;
     }
 
-    addInvesment() {
+    destroyDebts() {
+        
+        let años = 0;
+        let total = 0; //es el ahorro total que iremos construyendo durante los años
+        let ahorro = parseFloat(savings.value);
 
-    }
-
-    removeInvesment() {
-
-    }
-
-    buildDebtsSection() {
-        const debtText = document.getElementById("debtText");
-        const debtAmount = document.getElementById("debtAmount");
-        const debtInterest = document.getElementById("debtInterest");
-        const buttonAddDebt = document.getElementById("debtButton");
-
-        const tableDebt = document.getElementById("tableDebt");
-
-        buttonAddDebt.addEventListener('click', function () {
-
-            //ingresamos los datos al json que los guardará
-            data.push(
-                {
-                    "id": data.length,
-                    "name": debtText.value,
-                    "amount": debtAmount.value,
-                    "interest": debtInterest.value,
-                    "enabled" : true,
+        //los ahorros se sumarán al total ahorrado
+        if (dataSavings != []) {
+            dataSavings.forEach(function (element) {
+                if (element.enabled) {
+                    total += parseFloat(element.amount);
                 }
-            )
-            
-            //construimos la tabla
-            localUser.loadTableDebt();
-
-            //reemplazamos el texto del contenedor de deuda que agrega la informacion    
-            debtText.value = "";
-            debtAmount.value = "";
-            debtInterest.value = "";
-
-        });
-    }
-
-    loadTableDebt(){
-        //borramos todos las deudas que existen en la tabla
-        while (tableDebt.firstChild) {
-            tableDebt.removeChild(tableDebt.lastChild);
+            });
         }
 
-        //cargamos nuevamente todos los datos que se encuentran en el json
-        //si esta deshabilitado, no los cargo (no se como eliminarlo del array sin causar problemas con los id's)
-        data.forEach(function (element) {
-            if(element.enabled){
-                let oneMoreDebt = localUser.addDebt(element.id, element.name, element.amount, element.interest);
-            tableDebt.appendChild(oneMoreDebt);
-            }
-        });
-        //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-        const buttonSubstract = document.querySelectorAll(".debtButtonSubstract");
-        buttonSubstract.forEach(function(element){
-            element.addEventListener("click", localUser.removeDebt);
-        })
-    }
-
-    addDebt(id, text, amount, interest) {
-        //construyo cada elemento
-        const div = document.createElement("div");
-        const textElement = document.createElement("input");
-        const amountElement = document.createElement("input");
-        const interestElement = document.createElement("input");
-        const buttonElement = document.createElement("button");
-
-        //le agrego una clase a cada elemento
-        div.classList.add("formToAddDebt");
-        textElement.classList.add("debtText");
-        amountElement.classList.add("debtAmount");
-        interestElement.classList.add("debtInterest")
-        buttonElement.classList.add("debtButtonSubstract");
-
-        //le agrego un contenido al elemento
-        textElement.value = text;
-        amountElement.value = amount;
-        interestElement.value = interest;
-        buttonElement.textContent = "−";
-        buttonElement.setAttribute("data-id", id);
-        //buttonElement.addEventListener('click', this.removeDebt)
-
-
-        //introduzco cada elemento dentro del primer div
-        div.appendChild(textElement);
-        div.appendChild(amountElement);
-        div.appendChild(interestElement);
-        div.appendChild(buttonElement);
-
-        //debo retornar el div para ingresarlo en el contenedor
-        return div;
-    }
-
-    removeDebt(event) {
+        //las inversiones daran un retorno mensual que sumaremos al ahorro
+        if (dataInvestings != []) {
+            dataInvestings.forEach(function (element) {
+                if (element.enabled) {
+                    ahorro += parseFloat(element.amount) * (parseFloat(element.interest) / 100) / 12;
+                }
+            });
+        }
+        //hasta aca .....................................
         
-        data[event.target.dataset.id].enabled = false;
-        localUser.loadTableDebt();
+
+        //depuro las deudas
+        let nuevoArray = dataDebts.map(
+            function (element) {
+                if (element.enabled) {
+                    return [element.amount, element.interest];
+                }
+            }
+        )
+        nuevoArray = nuevoArray.filter(element => element != undefined);
+
+        let deudasAmount = 0; //defino el monto total de las deudas
+        nuevoArray.forEach(function (element) {
+            deudasAmount += element[0];
+        })
+
+        //mientras que los ahorros sean mayores a las deudas, los puedo cancelar
+        if (total >= deudasAmount) {
+            nuevoArray.forEach(function (element) {
+                total -= element[0];
+                deudasAmount -= element[0];
+                element[0] = 0;
+            });
+        } else {//si las deudas son mayores, cancelo todo lo que puedo
+            nuevoArray.forEach(function (element) {
+                if (total > element[0]) {
+                    total -= element[0];
+                    deudasAmount -= element[0];
+                    element[0] = 0;
+                } else {
+                    deudasAmount -= element[0];
+                    element[0] -= total;
+                    deudasAmount += element[0];
+                    total = 0;
+                }
+            })
+        }
+
+            while (deudasAmount > ahorro * 12) {
+                let anualSavings = ahorro * 12;
+                nuevoArray.forEach(function (element) {
+                    if (anualSavings > element[0]) {
+                        anualSavings -= element[0];
+                        element[0] = 0;
+
+                    } else {
+                        element[0] -= anualSavings;
+                        anualSavings = 0;
+                    }
+                });
+                años += 1;
+                deudasAmount = 0;
+                nuevoArray.forEach(function (element) {
+                    element[0] = element[0] * (1 + element[1] / 100);
+                    deudasAmount += element[0];
+                })
+            }
+
+            if (deudasAmount > 0 && deudasAmount <= ahorro * 12) {
+                total = ahorro * 12 - deudasAmount;
+                deudasAmount = 0;
+                nuevoArray.forEach(function (element) {
+                    element[0] = 0;
+                })
+                años += 1;
+            }
+
+        return [años, total, ahorro];
     }
+
+
+
 }
