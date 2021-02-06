@@ -18,7 +18,6 @@ function initializeElements(){
         dataInvestings = JSON.parse(localStorage.getItem("investings"));
     }
     
-    
     buildDebtsSection();
     buildSavingsSection();
     buildInvestingsSection();
@@ -29,70 +28,46 @@ function initializeElements(){
 }
 
 
-
-
 function addElement(id, text, amount, interest) {
-    //construyo cada elemento
+    
     const div = document.createElement("div");
-    const textElement = document.createElement("input");
-    const amountElement = document.createElement("input");
-    const interestElement = document.createElement("input");
-    const buttonElement = document.createElement("button");
-
-    //le agrego una clase a cada elemento
     div.classList.add("formToAddElement");
-    textElement.classList.add("elementText");
-    amountElement.classList.add("elementAmount");
-    interestElement.classList.add("elementInterest")
-    buttonElement.classList.add("elementButtonSubstract");
 
-    //le agrego un contenido al elemento
-    textElement.value = text;
-    amountElement.value = amount;
-    interestElement.value = interest;
-    buttonElement.textContent = "−";
-    buttonElement.setAttribute("data-id", id);
-    //buttonElement.addEventListener('click', this.removeDebt)
+    //construyo cada elemento
+    const contentElement = `<input class="elementText" value ="${text}">
+    <input class="elementAmount"value="${amount}">
+    <input class="elementInterest"value="${interest}">
+    <button class = "elementButtonSubstract" data-id="${id}">−</button>`;
 
-
-    //introduzco cada elemento dentro del primer div
-    div.appendChild(textElement);
-    div.appendChild(amountElement);
-    div.appendChild(interestElement);
-    div.appendChild(buttonElement);
+    $(div).append(contentElement);
 
     //debo retornar el div para ingresarlo en el contenedor
     return div;
 }
 
 //----------------------------------
+//--------Seccion deudas-------------
 //----------------------------------
-//----------------------------------
-//----------------------------------
-//----------------------------------
-//----------------------------------
-
 
 function buildDebtsSection() {
-    const debtText = document.getElementById("debtText");
-    const debtAmount = document.getElementById("debtAmount");
-    const debtInterest = document.getElementById("debtInterest");
-    const buttonAddDebt = document.getElementById("debtButton");
-    const tableDebt = document.getElementById("tableDebt");
+    const debtText = $("#debtText");
+    const debtAmount = $("#debtAmount");
+    const debtInterest = $("#debtInterest");
+    const buttonAddDebt = $("#debtButton");
 
-    buttonAddDebt.addEventListener('click', function () {
+    buttonAddDebt.click( function () {
 
-        debtText.value = debtText.value.trim();
+        debtText.val(debtText.val().trim());
 
-        if(debtText.value != "" && debtAmount.value != 0){
+        if(debtText.val() != "" && debtAmount.val() != 0){
+
             //ingresamos los datos al json que los guardará
-            
             dataDebts.push(
                 {
                     "id": dataDebts.length,
-                    "name": debtText.value,
-                    "amount": parseFloat(debtAmount.value),
-                    "interest": parseFloat(debtInterest.value),
+                    "name": debtText.val(),
+                    "amount": parseFloat(debtAmount.val()),
+                    "interest": parseFloat(debtInterest.val()),
                     "enabled" : true,
                 }
             )
@@ -101,27 +76,25 @@ function buildDebtsSection() {
             loadTableDebt();
 
             //reemplazamos el texto del contenedor de deuda que agrega la informacion    
-            debtText.value = "";
-            debtAmount.value = "";
-            debtInterest.value = "";
+            debtText.val("");
+            debtAmount.val("");
+            debtInterest.val("");
         }
-
     });
 }
 
 function loadTableDebt(){
+    
     //borramos todos las deudas que existen en la tabla
-    while (tableDebt.firstChild) {
-        tableDebt.removeChild(tableDebt.lastChild);
-    }
-
+    $("#tableDebt").empty()
+    
     //cargamos nuevamente todos los datos que se encuentran en el json
     //si esta deshabilitado, no los cargo (no se como eliminarlo del array sin causar problemas con los id's)
     if (dataDebts != []){
         dataDebts.forEach(function (element) {
             if(element.enabled){
                 let oneMoreDebt = addElement(element.id, element.name, element.amount, element.interest);
-                tableDebt.appendChild(oneMoreDebt);
+                tableDebt.append(oneMoreDebt);
             }
         });
     }
@@ -130,50 +103,41 @@ function loadTableDebt(){
     localStorage.setItem("debts", JSON.stringify(dataDebts));
 
     //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-    const buttonSubstract = document.querySelectorAll(".elementButtonSubstract");
-    buttonSubstract.forEach(function(element){
-        
-        element.addEventListener("click", removeDebt);
+    $(".elementButtonSubstract").each(function(i,element){
+        $(element).click(removeDebt);
     })
 }
 
 function removeDebt(event) {
-    
     dataDebts[event.target.dataset.id].enabled = false;
     loadTableDebt();
 }
 
-
 // -------------------------------------
-// -------------------------------------
-// -------------------------------------
-// -------------------------------------
-// -------------------------------------
-// -------------------------------------
+// --------Seccion Ahorros------------
 // -------------------------------------
 
 function buildSavingsSection() {
-    const savingsText = document.getElementById("savingText");
-    const savingsAmount = document.getElementById("savingAmount");
-    const savingsInterest = document.getElementById("savingInterest");
-    const buttonAddSavings = document.getElementById("savingButton");
-    const tableSavings = document.getElementById("tableSavings");
+    const savingsText = $("#savingText");
+    const savingsAmount = $("#savingAmount");
+    const savingsInterest = $("#savingInterest");
+    const buttonAddSavings = $("#savingButton");
+    
+    savingsInterest.val(0);
 
-    savingsInterest.value = 0;
+    buttonAddSavings.click( function () {
 
-    buttonAddSavings.addEventListener('click', function () {
+        savingsText.val() = savingsText.val().trim();
 
-        savingsText.value = savingsText.value.trim();
-
-        if(savingsText.value != "" && savingsAmount.value != 0){
+        if(savingsText.val() != "" && savingsAmount.val() != 0){
             //ingresamos los datos al json que los guardará
             
             dataSavings.push(
                 {
                     "id": dataSavings.length,
-                    "name": savingsText.value,
-                    "amount": parseFloat(savingsAmount.value),
-                    "interest": parseFloat(savingsInterest.value),
+                    "name": savingsText.val(),
+                    "amount": parseFloat(savingsAmount.val()),
+                    "interest": parseFloat(savingsInterest.val()),
                     "enabled" : true,
                 }
             )
@@ -182,9 +146,9 @@ function buildSavingsSection() {
             loadTableSavings();
 
             //reemplazamos el texto del contenedor de deuda que agrega la informacion    
-            savingsText.value = "";
-            savingsAmount.value = "";
-            savingsInterest.value = 0;
+            savingsText.val("");
+            savingsAmount.val("");
+            savingsInterest.val(0);
         }
 
     });
@@ -192,9 +156,8 @@ function buildSavingsSection() {
 
 function loadTableSavings(){
     //borramos todos las deudas que existen en la tabla
-    while (tableSavings.firstChild) {
-        tableSavings.removeChild(tableSavings.lastChild);
-    }
+    let tableSavings = $("#tableSavings");
+    tableSavings.empty();
 
     //cargamos nuevamente todos los datos que se encuentran en el json
     //si esta deshabilitado, no los cargo (no se como eliminarlo del array sin causar problemas con los id's)
@@ -202,7 +165,7 @@ function loadTableSavings(){
         dataSavings.forEach(function (element) {
             if(element.enabled){
                 let oneMoreSavings = addElement(element.id, element.name, element.amount, element.interest);
-                tableSavings.appendChild(oneMoreSavings);
+                tableSavings.append(oneMoreSavings);
             }
         });
     }
@@ -211,46 +174,39 @@ function loadTableSavings(){
     localStorage.setItem("savings", JSON.stringify(dataSavings));
 
     //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-    const buttonSubstract = document.querySelectorAll(".elementButtonSubstract");
-    buttonSubstract.forEach(function(element){
-        element.addEventListener("click", removeSavings);
+    $(".elementButtonSubstract").each(function(i,element){
+        $(element).click(removeSavings);
     })
 }
 
 function removeSavings(event) {
-    
     dataSavings[event.target.dataset.id].enabled = false;
     loadTableSavings();
 }
 
 //---------------------------------------
-//---------------------------------------
-//---------------------------------------
-//---------------------------------------
-//---------------------------------------
-//---------------------------------------
+//-------------seccion inversiones-----
 //---------------------------------------
 
 function buildInvestingsSection() {
-    const investingsText = document.getElementById("investingText");
-    const investingsAmount = document.getElementById("investingAmount");
-    const investingsInterest = document.getElementById("investingInterest");
-    const buttonAddInvesting = document.getElementById("investingButton");
-    const tableInvesting = document.getElementById("tableInvestings");
+    const investingsText = $("#investingText");
+    const investingsAmount = $("#investingAmount");
+    const investingsInterest = $("#investingInterest");
+    const buttonAddInvesting = $("#investingButton");
 
-    buttonAddInvesting.addEventListener('click', function () {
+    buttonAddInvesting.click( function () {
 
-        investingsText.value = investingsText.value.trim();
+        investingsText.val() = investingsText.val().trim();
 
-        if(investingsText.value != "" && investingsAmount.value != 0){
+        if(investingsText.val() != "" && investingsAmount.val() != 0){
             //ingresamos los datos al json que los guardará
             
             dataInvestings.push(
                 {
                     "id": dataInvestings.length,
-                    "name": investingsText.value,
-                    "amount": parseFloat(investingsAmount.value),
-                    "interest": parseFloat(investingsInterest.value),
+                    "name": investingsText.val(),
+                    "amount": parseFloat(investingsAmount.val()),
+                    "interest": parseFloat(investingsInterest.val()),
                     "enabled" : true,
                 }
             )
@@ -259,9 +215,9 @@ function buildInvestingsSection() {
             loadTableInvestings();
 
             //reemplazamos el texto del contenedor de deuda que agrega la informacion    
-            investingsText.value = "";
-            investingsAmount.value = "";
-            investingsInterest.value = "";
+            investingsText.val("");
+            investingsAmount.val("");
+            investingsInterest.val("");
         }
 
     });
@@ -269,9 +225,8 @@ function buildInvestingsSection() {
 
 function loadTableInvestings(){
     //borramos todos las deudas que existen en la tabla
-    while (tableInvestings.firstChild) {
-        tableInvestings.removeChild(tableInvestings.lastChild);
-    }
+    let tableInvestings = $("#tableInvestings");
+    tableInvestings.empty();
 
     //cargamos nuevamente todos los datos que se encuentran en el json
     //si esta deshabilitado, no los cargo (no se como eliminarlo del array sin causar problemas con los id's)
@@ -279,7 +234,7 @@ function loadTableInvestings(){
         dataInvestings.forEach(function (element) {
             if(element.enabled){
                 let oneMoreInvestings = addElement(element.id, element.name, element.amount, element.interest);
-                tableInvestings.appendChild(oneMoreInvestings);
+                tableInvestings.append(oneMoreInvestings);
             }
         });
     }
@@ -288,14 +243,13 @@ function loadTableInvestings(){
     localStorage.setItem("investings", JSON.stringify(dataInvestings));
 
     //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-    const buttonSubstract = document.querySelectorAll(".elementButtonSubstract");
-    buttonSubstract.forEach(function(element){
-        element.addEventListener("click", removeInvestings);
+    $(".elementButtonSubstract").each(function(i,element){
+        $(element).click(removeInvestings);
     })
 }
 
+
 function removeInvestings(event) {
-    
     dataInvestings[event.target.dataset.id].enabled = false;
     loadTableInvestings();
 }

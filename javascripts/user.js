@@ -8,29 +8,35 @@ class User {
     }
 
     loadLocalStorage() {
-        if (localStorage.key("usuario")) {
+        if (localStorage.getItem("usuario")) {
+            
             salary.value = JSON.parse(localStorage.getItem("usuario")).salary;
             savings.value = JSON.parse(localStorage.getItem("usuario")).savings;
             interest.value = JSON.parse(localStorage.getItem("usuario")).interest;
-            this.salary = parseFloat(salary.value);
-            this.savings = parseFloat(savings.value);
-            this.interest = parseFloat(interest.value);
+            this.salary = salary.value;
+            this.savings = savings.value;
+            this.interest = interest.value;
+
+            const yearsDisplay = document.getElementById("years");
             yearsDisplay.textContent = this.calculateYearsToRetire();
+
+            
         }
     }
 
     calculateYearsToRetire() {
         let arrayDeudasDestruidas = this.destroyDebts();
+        
         let años = arrayDeudasDestruidas[0];
         let total = arrayDeudasDestruidas[1];
 
         let salario = this.salary;
         let ahorro = arrayDeudasDestruidas[2];
         let interes = this.interest;
-
+        
         let costoVida = salario - ahorro;
         let fondo = (costoVida * 12) / (interes / 100); //fondo total ahorrado necesario para retirarse
-
+        
 
         if (fondo == Infinity) {
             años = "∞"
@@ -40,7 +46,7 @@ class User {
                 años += 1
             }
         }
-
+        
         return años;
     }
 
@@ -54,7 +60,7 @@ class User {
         if (dataSavings != []) {
             dataSavings.forEach(function (element) {
                 if (element.enabled) {
-                    total += parseFloat(element.amount);
+                    total += element.amount;
                 }
             });
         }
@@ -63,7 +69,7 @@ class User {
         if (dataInvestings != []) {
             dataInvestings.forEach(function (element) {
                 if (element.enabled) {
-                    ahorro += parseFloat(element.amount) * (parseFloat(element.interest) / 100) / 12;
+                    ahorro += element.amount * (element.interest / 100) / 12;
                 }
             });
         }
