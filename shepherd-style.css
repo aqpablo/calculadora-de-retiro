@@ -1,0 +1,30 @@
+.shepherd-button {
+    background: #C3D6E8;
+    font-size: 0.7rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    float: right;
+}
+.shepherd-button:hover{
+    background: #8CAFCE;
+}
+
+.shepherd-text{
+    font-family: Times, 'Times New Roman', serif;
+}
+
+body.shepherd-active::after{
+    content: "";
+    display: block;
+    background-color: #000;
+    opacity: 0.3;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    
+    
+}
+.shepherd-target.shepherd-enabled{
+    z-index: 1;
+    position: relative;
+}

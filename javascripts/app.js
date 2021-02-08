@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    //iniciar el tour de shepherd si es la primera vez en la pagina
+    if(localStorage.getItem("usuario")==null){
+        tour.start();
+    }
+
     const salary = $("#salary");
     const savings = $("#savings");
     const interest = $("#interest");
@@ -22,8 +27,6 @@ $(document).ready(function () {
         yearsDisplay.text(localUser.calculateYearsToRetire());
 
         localStorage.setItem("usuario", JSON.stringify(localUser));
-
-        
     }
     )
 

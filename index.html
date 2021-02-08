@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcula tu retiro</title>
+    <!--el tour de sheperd-->
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js"></script>
+    <link rel="stylesheet" href="shepherd-style.css">
     <link rel="stylesheet" href="styles.css">
     
     <script src="https://code.jquery.com/jquery-3.5.1.js"
@@ -13,6 +16,7 @@
     <script src="javascripts/data.js"></script>
     <script src="javascripts/user.js"></script>
     <script src="javascripts/app.js"></script>
+    <script src="shepherd.js"></script>
 
 </head>
 
@@ -20,45 +24,48 @@
     <div class="firstContainer">
         <div class="container">
             <p>Ingrese sus salario mensual</p>
-            <input type="number" class="input-numeral" id="salary">
+            <input type="number" class="salary" id="salary">
             <p>Ingrese cuánto puede ahorrar al mes</p>
-            <input type="number" id="savings">
+            <input type="number" class="savings" id="savings">
             <p>Ingrese el interés que consigue (%) </p>
-            <input type="number" id="interest">
-            <button id="calculate">Calcular</button>
+            <input type="number" class="interest" id="interest">
+            <div style="height: 1rem;"></div>
+            <hr>
+            <button class="calculate"id="calculate">Calcular</button>
             <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
             <hr>
             <div class="container" id="secondContainer">
-                <h4>Deudas?</h4>
+                <h4>Deudas</h4>
                 <div class="tableDebt" id="tableDebt"></div>
                 <div class="formToAddElement">
-                    <input type="text" class="elementText" id="debtText">
-                    <input type="number" class="elementAmount" id="debtAmount">
-                    <input type="number" class="elementInterest" id="debtInterest">
+                    <input type="text" placeholder="Descripción" class="elementText" id="debtText">
+                    <input type="number" placeholder="Monto" class="elementAmount" id="debtAmount">
+                    <input type="number" placeholder="int" class="elementInterest" id="debtInterest">
                     <button class="elementButton" id="debtButton">+</button>
                 </div>
 
-                <h4>Ahorros?</h4>
+                <h4>Ahorros</h4>
                 <div class="tableSavings" id="tableSavings"></div>
                 <div class="formToAddElement">
-                    <input type="text" class="elementText" id="savingText">
-                    <input type="number" class="elementAmount" id="savingAmount">
+                    <input type="text" placeholder="Descripción" class="elementText" id="savingText">
+                    <input type="number" placeholder="Monto" class="elementAmount" id="savingAmount">
                     <input type="number" class="elementInterest" id="savingInterest">
                     <button class="elementButton" id="savingButton">+</button>
                 </div>
 
-                <h4>Inversiones?</h4>
+                <h4>Inversiones</h4>
                 <div class="tableInvestings" id="tableInvestings"></div>
                 <div class="formToAddElement">
-                    <input type="text" class="elementText" id="investingText">
-                    <input type="number" class="elementAmount" id="investingAmount">
-                    <input type="number" class="elementInterest" id="investingInterest">
+                    <input type="text" placeholder="Descripción" class="elementText" id="investingText">
+                    <input type="number" placeholder="Monto" class="elementAmount" id="investingAmount">
+                    <input type="number" placeholder="int"class="elementInterest" id="investingInterest">
                     <button class="elementButton" id="investingButton">+</button>
                 </div>
             </div>
 
         </div>
     </div>
+
 </body>
 
 </html>
