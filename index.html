@@ -13,10 +13,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    <script src="javascripts/data.js"></script>
+    <script src="javascripts/elements.js"></script>
     <script src="javascripts/user.js"></script>
     <script src="javascripts/app.js"></script>
-    <script src="shepherd.js"></script>
+    <script src="javascripts/shepherd.js"></script>
 
 </head>
 
@@ -31,16 +31,14 @@
             <input type="number" class="interest" id="interest">
             <div style="height: 1rem;"></div>
             <hr>
-            <button class="calculate"id="calculate">Calcular</button>
-            <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
-            <hr>
+
             <div class="container" id="secondContainer">
                 <h4>Deudas</h4>
                 <div class="tableDebt" id="tableDebt"></div>
                 <div class="formToAddElement">
                     <input type="text" placeholder="Descripción" class="elementText" id="debtText">
                     <input type="number" placeholder="Monto" class="elementAmount" id="debtAmount">
-                    <input type="number" placeholder="int" class="elementInterest" id="debtInterest">
+                    <input type="number" placeholder="Int." class="elementInterest" id="debtInterest">
                     <button class="elementButton" id="debtButton">+</button>
                 </div>
 
@@ -58,10 +56,18 @@
                 <div class="formToAddElement">
                     <input type="text" placeholder="Descripción" class="elementText" id="investingText">
                     <input type="number" placeholder="Monto" class="elementAmount" id="investingAmount">
-                    <input type="number" placeholder="int"class="elementInterest" id="investingInterest">
+                    <input type="number" placeholder="Int."class="elementInterest" id="investingInterest">
                     <button class="elementButton" id="investingButton">+</button>
                 </div>
+                
+                <div style="height: 1rem;"></div>
+                <hr>
             </div>
+            
+            <button class="calculate"id="calculate">Calcular</button>
+            <button class="ejemplo "id="ejemplo">Cargar Ejemplo</button>
+            <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
+            
 
         </div>
     </div>

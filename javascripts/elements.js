@@ -127,7 +127,7 @@ function buildSavingsSection() {
 
     buttonAddSavings.click( function () {
 
-        savingsText.val() = savingsText.val().trim();
+        savingsText.val(savingsText.val().trim());
 
         if(savingsText.val() != "" && savingsAmount.val() != 0){
             //ingresamos los datos al json que los guardará
@@ -196,7 +196,7 @@ function buildInvestingsSection() {
 
     buttonAddInvesting.click( function () {
 
-        investingsText.val() = investingsText.val().trim();
+        investingsText.val(investingsText.val().trim());
 
         if(investingsText.val() != "" && investingsAmount.val() != 0){
             //ingresamos los datos al json que los guardará

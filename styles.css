@@ -10,6 +10,8 @@ body{
     border-radius: 7.5px;
     background-color: #C3D6E8;
     padding: 15px;
+
+    width: 21.5rem;
 }
 .container{
     display: flex;
@@ -58,3 +60,4 @@ hr{
     margin: 0px;
     
 }
+

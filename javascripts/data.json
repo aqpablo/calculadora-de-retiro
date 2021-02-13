@@ -1,0 +1,41 @@
+{
+    "usuario": {
+        "salary": 35000,
+        "savings": 12000,
+        "interest": 6
+    },
+    "deudas": [
+        {
+            "id": 2,
+            "name": "Tarjeta VISA",
+            "amount": 80000,
+            "interest": 5,
+            "enabled": true
+        }
+    ],
+    "ahorros": [
+        {
+            "id": 0,
+            "name": "Banco Santander",
+            "amount": 50000,
+            "interest": 0,
+            "enabled": true
+        }
+    ],
+    "inversiones": [
+        {
+            "id": 0,
+            "name": "Binance Earn",
+            "amount": 15000,
+            "interest": 6,
+            "enabled": true
+        },
+        {
+            "id": 1, 
+            "name": "Acciones varias", 
+            "amount": 50000, 
+            "interest": 7, 
+            "enabled": true
+        }
+    ]
+}
