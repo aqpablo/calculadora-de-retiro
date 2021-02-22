@@ -10,7 +10,7 @@ $(document).ready(function () {
     const savings = $("#savings");
     const interest = $("#interest");
     const yearsDisplay = $("#years");
-    const buttonCalculate = $("#calculate");
+    
 
     //SECCIONES DE FINANZas
     initializeElements();
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
     //boton CALCULAR
-    buttonCalculate.click(function () {
+    $("#calculate").click(function () {
 
         localUser.salary = parseFloat(salary.val());
         localUser.savings = parseFloat(savings.val());
@@ -29,13 +29,19 @@ $(document).ready(function () {
 
         localStorage.setItem("usuario", JSON.stringify(localUser));
 
-        setTimeout(function(){
-        $('#secondContainer').slideDown(1500)},
-        3000,
-        );
+        
     }
     )
-
+    $("#mostrar").click(function(){
+        
+            $('#secondContainer').show(1500)}
+        
+    )
+    $("#ocultar").click(function(){
+        
+            $('#secondContainer').hide(1500)}
+        
+    )
     $("#ejemplo").click(function(){
         $.ajax({
             url: "javascripts/data.json",
@@ -56,6 +62,18 @@ $(document).ready(function () {
                 console.log("FAIL");
             }
         })
+    })
+
+    $("#limpiar").click(function(){
+        salary.val("")
+        savings.val("")
+        interest.val("")
+        dataDebts = [];
+        dataSavings = [];
+        dataInvestings = [];
+        loadTableDebt();
+        loadTableSavings();
+        loadTableInvestings();  
     })
 })
 

@@ -14,6 +14,7 @@
             todos los meses, para lograr retirarte! Es decir, construirás un\
             fondo de una cantidad tal que los retornos de tu inversión mantendán\
             tu costo de vida por siempre.`,
+            
             buttons: [
                 {
                     action() {
@@ -32,7 +33,8 @@
             id: 'creating'
         });
         tour.addStep({
-            title: 'Salario',
+            // title: 'Salario',
+            cancelIcon: "disabled",
             text: 'Comencemos ingresando tu salario o los \
             ingresos totales que obtienes mes a mes',
             buttons: [
@@ -52,14 +54,15 @@
             ],
             attachTo: {
                 element: '.salary',
-                on: 'left',
+                on: 'right',
             }
         })
         tour.addStep({
-            title: 'Ahorro',
-            text: 'La cantidad de tu salario que eres capaz de hacer a un lado para invertirlo es crucial.\
-            <b>¡Tu capacidad de retiro no depende de qué tan grande sea tu salario!</b>\
-            si no del porcentaje del mismo que destines a invertir, ya que esto\
+            // title: 'Ahorro',
+            cancelIcon: "disabled",
+            text: 'Aquí ingresa la cantidad de tu salario que eres capaz de hacer a un lado para invertirlo es crucial.\
+            ¡Tu capacidad de retiro no depende de qué tan grande sea tu salario!\
+            si no del <b>porcentaje del mismo que destines a invertir</b>, ya que el restante\
             determina tu costo de vida, y por lo tanto, la cantidad total de\
             dinero que necesitas ahorrar',
             buttons: [
@@ -83,8 +86,9 @@
             }
         })
         tour.addStep({
-            title: 'Interés',
-            text: 'Es el porcentaje de retorno de tus ahorros.\
+            // title: 'Interés',
+            cancelIcon: "disabled",
+            text: 'El interés es el porcentaje de retorno de tus ahorros.\
             Existen muchos instrumentos de inversión hoy en día\
             y dependerán de vos encontrarlos y balancear los riesgos\
             y los retornos.\
@@ -109,11 +113,12 @@
             ],
             attachTo: {
                 element: '.interest',
-                on: 'left',
+                on: 'right',
             }
         })
         tour.addStep({
-            title: 'Calcular!',
+            // title: 'Calcular!',
+            cancelIcon: "disabled",
             text: 'Cuando completes todo presiona este botón',
             buttons: [
                 {

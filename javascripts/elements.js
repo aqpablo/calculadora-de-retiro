@@ -34,10 +34,10 @@ function addElement(id, text, amount, interest) {
     div.classList.add("formToAddElement");
 
     //construyo cada elemento
-    const contentElement = `<input class="elementText" value ="${text}">
-    <input class="elementAmount"value="${amount}">
-    <input class="elementInterest"value="${interest}">
-    <button class = "elementButtonSubstract" data-id="${id}">−</button>`;
+    const contentElement = `<input class="elementText" value ="${text}" readonly>
+    <input class="elementAmount element"value="${amount}" readonly>
+    <input class="elementInterest element"value="${interest}" readonly>
+    <button class = "elementButtonSubstract element" data-id="${id}">−</button>`;
 
     $(div).append(contentElement);
 
@@ -137,7 +137,7 @@ function buildSavingsSection() {
                     "id": dataSavings.length,
                     "name": savingsText.val(),
                     "amount": parseFloat(savingsAmount.val()),
-                    "interest": parseFloat(savingsInterest.val()),
+                    "interest": 0,
                     "enabled" : true,
                 }
             )
