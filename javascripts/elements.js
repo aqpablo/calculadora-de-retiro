@@ -28,7 +28,7 @@ function initializeElements(){
 }
 
 
-function addElement(id, text, amount, interest) {
+function addElement(id, text, amount, interest,type) {
     
     const div = document.createElement("div");
     div.classList.add("formToAddElement");
@@ -37,7 +37,7 @@ function addElement(id, text, amount, interest) {
     const contentElement = `<input class="elementText" value ="${text}" readonly>
     <input class="elementAmount element"value="${amount}" readonly>
     <input class="elementInterest element"value="${interest}" readonly>
-    <button class = "elementButtonSubstract element" data-id="${id}">−</button>`;
+    <button class = "elementButtonSubstract substract${type} element" data-id="${id}">−</button>`;
 
     $(div).append(contentElement);
 
@@ -93,7 +93,7 @@ function loadTableDebt(){
     if (dataDebts != []){
         dataDebts.forEach(function (element) {
             if(element.enabled){
-                let oneMoreDebt = addElement(element.id, element.name, element.amount, element.interest);
+                let oneMoreDebt = addElement(element.id, element.name, element.amount, element.interest, "Debt");
                 tableDebt.append(oneMoreDebt);
             }
         });
@@ -103,12 +103,13 @@ function loadTableDebt(){
     localStorage.setItem("debts", JSON.stringify(dataDebts));
 
     //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-    $(".elementButtonSubstract").each(function(i,element){
+    $(".substractDebt").each(function(i,element){
         $(element).click(removeDebt);
     })
 }
 
 function removeDebt(event) {
+    console.log(event.target.dataset.id)
     dataDebts[event.target.dataset.id].enabled = false;
     loadTableDebt();
 }
@@ -164,7 +165,7 @@ function loadTableSavings(){
     if (dataSavings != []){
         dataSavings.forEach(function (element) {
             if(element.enabled){
-                let oneMoreSavings = addElement(element.id, element.name, element.amount, element.interest);
+                let oneMoreSavings = addElement(element.id, element.name, element.amount, element.interest, "Saving");
                 tableSavings.append(oneMoreSavings);
             }
         });
@@ -174,8 +175,10 @@ function loadTableSavings(){
     localStorage.setItem("savings", JSON.stringify(dataSavings));
 
     //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-    $(".elementButtonSubstract").each(function(i,element){
+    $(".substractSaving").each(function(i,element){
+        
         $(element).click(removeSavings);
+        
     })
 }
 
@@ -233,7 +236,7 @@ function loadTableInvestings(){
     if (dataInvestings != []){
         dataInvestings.forEach(function (element) {
             if(element.enabled){
-                let oneMoreInvestings = addElement(element.id, element.name, element.amount, element.interest);
+                let oneMoreInvestings = addElement(element.id, element.name, element.amount, element.interest, "Interest");
                 tableInvestings.append(oneMoreInvestings);
             }
         });
@@ -243,7 +246,7 @@ function loadTableInvestings(){
     localStorage.setItem("investings", JSON.stringify(dataInvestings));
 
     //selecciono los botones - y por cada uno agrego una escucha, para removerlos si se presiona
-    $(".elementButtonSubstract").each(function(i,element){
+    $(".substractInterest").each(function(i,element){
         $(element).click(removeInvestings);
     })
 }

@@ -1,16 +1,13 @@
+
 .shepherd-button {
-    background: #C3D6E8;
+    background: var(--color-four);
     font-size: 0.7rem;
-    font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     float: right;
+    
 }
 .shepherd-button:hover{
-    background: #8CAFCE;
-}
-
-.shepherd-text{
-    font-family: Times, 'Times New Roman', serif;
+    background: var(--color-four);
 }
 
 body.shepherd-active::after{
@@ -31,3 +28,10 @@ body.shepherd-active::after{
 /* .shepherd-cancel-icon{
     
 } */
+.shepherd-title{
+    font-weight: 900;
+}
+
+body.shepherd-active::after{
+    z-index: 2;
+}

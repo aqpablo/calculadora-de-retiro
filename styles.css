@@ -1,9 +1,9 @@
  :root{
-    --color-one: #FAFBFB;
-    --color-two: #e1d9fa;
-    --color-three: #A19BD1;
-    --color-four: #857AD9;
-    --color-five: #6152F4;
+    --color-one: white;
+    --color-two: #FAFBFB;
+    --color-three: #c7cbd3;
+    --color-four: #5e84f5;
+    --color-five: #3C6BF7;
     --color-six: rgb(0,0,0,0.05);
 }
 *{
@@ -13,21 +13,21 @@ body{
     background-color:var(--color-two);
     display: flex;
     flex-direction: column;
-    margin: 0%;
-    
-    max-width: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+    margin: 0%;
+    max-width: 100%;
 }
 .firstContainer{
     background-color: var(--color-one);
     padding: 15px;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
 }
 .container{
     background-color: var(--color-one);
-    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -41,8 +41,8 @@ p{
     margin-bottom: 0.5rem;
 }
 input{
-    background-color: white;
-    border: 1px solid var(--color-three);
+    background-color: rgba(221, 228, 236, 0.301);
+    border: 1px solid rgba(221, 228, 236, 0.8);
     border-radius: 2px;
     line-height: 1.2rem;
     padding: 0.5rem;
@@ -58,14 +58,20 @@ input::-moz-list-number{
 input.element{
     font-size: 0.8rem;
 }
+input:read-only{
+    font-size: 0.8rem;
+} 
 .btn{
     height: 2rem;
     margin: 0.4rem auto;
     line-height: 1rem;
     margin: 0%;
     border: 0px;
-    
+    border-radius: 2px;
+    background-color: var(--color-three);
     padding: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
 }
 .buttons{
     display: flex;
@@ -73,11 +79,10 @@ input.element{
     width: 100%;
     font-size: 1rem;
     margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 #calculate{
     background-color: var(--color-five);
-    border-radius: 2px;
 }
 hr{
     width: 100%;
@@ -90,6 +95,7 @@ hr{
 }
 .elementText{
     width: 100%;
+    font-size: 0.8rem;
 }
 .elementAmount{
     width: 4rem;
@@ -104,20 +110,19 @@ hr{
     margin: 0%;
     border: 0px;
     font-size: 1rem;
+    background-color: var(--color-three);
 }
 
 #secondContainer{
     /* position: absolute; */
     z-index: 0; 
     width: 100vw;
-    
 }
 
     
 @media (min-width: 426px){
     
     body{
-        height: 97vh;
     }
     .firstContainer{
         border-radius: 7.5px;
@@ -125,11 +130,9 @@ hr{
         width: 21.5rem;
         box-shadow: 0 5px 15px #888;
     }
-    
     .container{
         display: flex;
-        flex-direction: column;
-        
+        flex-direction: column;  
     }
     #secondContainer{
         border-radius: 8px;
@@ -176,4 +179,22 @@ hr{
         height: 97vh;
         flex-direction: row; 
     }
+}
+
+
+
+@keyframes greenAnswer
+{
+    0%{
+        background-color: transparent;
+    }
+    50%{
+        background-color: rgb(65, 202, 127);
+    }
+    100%{
+        background-color: transparent;
+    }
+}
+#respuesta{
+    padding-bottom: 0.5rem;
 }

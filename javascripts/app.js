@@ -26,20 +26,30 @@ $(document).ready(function () {
         localUser.interest = parseFloat(interest.val());
         
         yearsDisplay.text(localUser.calculateYearsToRetire());
+        
+        $("#respuesta").css("animation","greenAnswer 1s linear"),
+        setTimeout(function(){
+            $("#respuesta").css("animation","none")
+        },1000)
+        
 
         localStorage.setItem("usuario", JSON.stringify(localUser));
 
         
-    }
-    )
+    })
     $("#mostrar").click(function(){
         
-            $('#secondContainer').show(1500)}
+        $('#secondContainer').show(500);
         
-    )
+        if(localStorage.getItem("showElementsShepherd")!="true"){
+            elementsTour.start();
+            localStorage.setItem("showElementsShepherd", true);
+        }
+        
+    })
     $("#ocultar").click(function(){
         
-            $('#secondContainer').hide(1500)}
+        $('#secondContainer').hide(500)}
         
     )
     $("#ejemplo").click(function(){

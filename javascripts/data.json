@@ -6,7 +6,7 @@
     },
     "deudas": [
         {
-            "id": 2,
+            "id": 0,
             "name": "Tarjeta VISA",
             "amount": 80000,
             "interest": 5,
