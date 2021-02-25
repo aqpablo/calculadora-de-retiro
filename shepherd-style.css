@@ -6,8 +6,8 @@
     float: right;
     
 }
-.shepherd-button:hover{
-    background: var(--color-four);
+.shepherd-button:active{
+    background-color: var(--color-four);
 }
 
 body.shepherd-active::after{
@@ -25,13 +25,15 @@ body.shepherd-active::after{
     z-index: 1;
     position: relative;
 }
-/* .shepherd-cancel-icon{
-    
-} */
+
 .shepherd-title{
     font-weight: 900;
 }
 
 body.shepherd-active::after{
     z-index: 2;
+}
+
+.shepherd-button-secondary:active{
+    background: var(--color-three);
 }

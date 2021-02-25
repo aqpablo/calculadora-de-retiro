@@ -45,14 +45,16 @@
                 <button class="btn calculate " id="calculate">Calcular</button>
             </div>
 
-            <hr>
+            <hr style="margin-top:0;">
 
-            <div id="respuesta">
-                <p>Respuesta: te retirarás en <b id="years">x</b> años</p>
+            <div id="respuesta" style="display: flex; justify-content: center;">
+                <p>Te retirarás en <b id="years">x</b> años</p>
             </div>
         </div>
     </div>
-    <div class="container" id="secondContainer">
+    <div id="secondContainer">
+    <div class="container" >
+        <hr class="hrHidden" style="margin-bottom:0;">
         <label class="form-label">Deudas</label>
         <div class="tableDebt" id="tableDebt"></div>
         <div class="formToAddElement">
@@ -86,7 +88,7 @@
         <button class="btn ocultar" id="ocultar">Ocultar</button>
         </div>
     </div>
-        
+</div>
     
 
 </body>

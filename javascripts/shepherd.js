@@ -36,7 +36,7 @@ tour.addStep({
     // title: 'Salario',
     cancelIcon: "disabled",
     text: 'Comencemos ingresando tu salario o los \
-            ingresos totales que obtienes mes a mes',
+            ingresos totales que obtienes mes a mes.',
     buttons: [
         {
             action() {
@@ -60,11 +60,9 @@ tour.addStep({
 tour.addStep({
     // title: 'Ahorro',
     cancelIcon: "disabled",
-    text: 'Aquí ingresa la cantidad de tu salario que eres capaz de hacer a un lado para invertirlo es crucial.\
+    text: 'Aquí ingresa la cantidad de tu salario que eres capaz de hacer a un lado para invertir.\
             ¡Tu capacidad de retiro no depende de qué tan grande sea tu salario!\
-            si no del <b>porcentaje del mismo que destines a invertir</b>, ya que el restante\
-            determina tu costo de vida, y por lo tanto, la cantidad total de\
-            dinero que necesitas ahorrar',
+            si no del <b>porcentaje del mismo que destines a invertir</b>.',
     buttons: [
         {
             action() {
@@ -88,14 +86,13 @@ tour.addStep({
 tour.addStep({
     // title: 'Interés',
     cancelIcon: "disabled",
-    text: 'El interés es el porcentaje de retorno de tus ahorros.\
+    text: 'El interés es el porcentaje de retorno anual de tus ahorros.\
             Existen muchos instrumentos de inversión hoy en día\
-            y dependerán de vos encontrarlos y balancear los riesgos\
-            y los retornos.\
-            Esta pieza es fundamental: si construyes un gran capital\
-            pero no lo inviertes, eventualmente te gastarás todos tus\
-            ahorros. En cambio, la estrategia ganadora es obtener\
-            un retorno constante de este fondo.',
+            y dependerá de vos encontrarlos y balancear los riesgos\
+            y beneficios.\
+            Se recomienda suponer un 4% anual en dólares, aunque se pueden\
+            encontrar en el mercado retornos del 8% o hasta el 10% en\
+            instrumentos relativamente seguros.',
     buttons: [
         {
             action() {
@@ -119,7 +116,7 @@ tour.addStep({
 tour.addStep({
     // title: 'Calcular!',
     cancelIcon: "disabled",
-    text: 'Cuando completes todo presiona en el botón Calcular',
+    text: 'Cuando completes todo presiona en el botón <i>Calcular</i>',
     buttons: [
         {
             action() {
@@ -132,7 +129,7 @@ tour.addStep({
             action() {
                 return this.next();
             },
-            text: 'Siguiente'
+            text: 'Finalizar'
         }
     ],
     attachTo: {
@@ -152,7 +149,7 @@ const elementsTour = new Shepherd.Tour({
 
 elementsTour.addStep({
     cancelIcon: "disabled",
-    text: 'En esta sección podrás agregar elementos adicionales a tus finanzas: <b>deudas, ahorros e inversiones</b>. Cada elemento deberá tener una descripción, el valor o monto, y el interés. Cuando termines de agregarlos puedes volver a pulsar en el botón de Calcular y observar cómo éstos modifican tus años laborales.',
+    text: 'En esta sección podrás agregar elementos adicionales a tus finanzas: <b>deudas, ahorros e inversiones</b>. Cada elemento deberá tener un nombre, un monto, y el interés. Cuando termines de agregarlos puedes volver a pulsar en el botón <i>Calcular</i> y observar cómo se modifican tus años laborales.',
     buttons: [
         {
             action() {
